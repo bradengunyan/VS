@@ -1,0 +1,220 @@
+html, body {
+    margin: 0;
+    padding: 0;
+  }
+  canvas {
+    display: block;
+  }
+#maxHealthButton {
+  position: absolute;
+  top: 0px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: rgb(255, 120, 0);
+  color: white;
+  border: 2px solid #474747;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+#maxHealthButton:hover {
+  background-color: rgb(192, 90, 0);
+}
+#regenSpeedButton {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: rgb(255, 0, 170);
+  color: white;
+  border: 1px solid #474747;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+#regenSpeedButton:hover {
+  background-color: rgb(177, 0, 118);
+}
+#bodyDamageButton {
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: rgb(106, 0, 255);
+  color: white;
+  border: 1px solid #474747;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+#bodyDamageButton:hover {
+  background-color: rgb(74, 0, 177);
+}
+#bulletSpeedButton {
+  position: absolute;
+  top: 45px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: rgb(0, 89, 255);
+  color: white;
+  border: 1px solid #474747;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+#bulletSpeedButton:hover {
+  background-color: rgb(0, 57, 163);
+}
+#bulletPenetrationButton {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: rgb(255, 200, 0);
+  color: white;
+  border: 1px solid #474747;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+#bulletPenetrationButton:hover {
+  background-color: rgb(153, 120, 0);
+}
+#bulletDamageButton {
+  position: absolute;
+  top: 75px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: rgb(255, 30, 0);
+  color: white;
+  border: 1px solid #474747;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+#bulletDamageButton:hover {
+  background-color: rgb(177, 21, 0);
+}
+#reloadSpeedButton {
+  position: absolute;
+  top: 90px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: rgb(0, 255, 0);
+  color: white;
+  border: 1px solid #474747;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+#reloadSpeedButton:hover {
+  background-color: rgb(0, 165, 0);
+}
+#movementSpeedButton {
+  position: absolute;
+  top: 105px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: rgb(0, 255, 191);
+  color: white;
+  border: 1px solid #474747;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+#movementSpeedButton:hover {
+  background-color: rgb(0, 175, 131);
+}
+#tankUpgradeOneButton {
+  position: absolute;
+  top: 70px;
+  left: 60px;
+  padding: 20px 20px;
+  background-color: rgb(0, 195, 255);
+  color: white;
+  border: 1px solid #474747;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+#tankUpgradeOneButton:hover {
+  background-color: rgb(0, 156, 204);
+}
+#tankUpgradeTwoButton {
+  position: absolute;
+  top: 70px;
+  left: 160px;
+  padding: 20px 20px;
+  background-color: rgb(0, 255, 21);
+  color: white;
+  border: 1px solid #474747;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+#tankUpgradeTwoButton:hover {
+  background-color: rgb(0, 158, 13);
+}
+#tankUpgradeThreeButton {
+  position: absolute;
+  top: 170px;
+  left: 60px;
+  padding: 20px 20px;
+  background-color: rgb(255, 112, 112);
+  color: white;
+  border: 1px solid #474747;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+#tankUpgradeThreeButton:hover {
+  background-color: rgb(255, 56, 56);
+}
+#tankUpgradeFourButton {
+  position: absolute;
+  top: 170px;
+  left: 160px;
+  padding: 20px 20px;
+  background-color: rgb(255, 247, 141);
+  color: white;
+  border: 1px solid #474747;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+#tankUpgradeFourButton:hover {
+  background-color: rgb(255, 243, 77);
+}
+#ignoreTankUpgradeButton {
+  position: absolute;
+  top: 250px;
+  left: 105px;
+  padding: 5px 10px;
+  background-color: rgb(192, 192, 192);
+  color: rgb(49, 49, 49);
+  border: 3px solid #474747;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+#ignoreTankUpgradeButton:hover {
+  background-color: rgb(128, 128, 128);
+}
+#message {
+  position: absolute;
+  text-align: center;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #4747473f;
+  border: 2px #474747;
+  padding: 1px;
+  color: #3a3a3a;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+.hidden {
+  display: none;
+}
