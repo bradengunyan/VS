@@ -484,14 +484,13 @@ class Tangle {
       this.modV = new createVector(0, 0);
       this.modA = new createVector(0, 0);
       this.modVelocity = new createVector(0, 0);
-      this.acceleration = new createVector(0, 0);
       this.modAcc = new createVector(0, 0);
-      this.health = upgrades[0].bulletDamage;
-      this.penetration = upgrades[0].penetration;
-      this.mass = upgrades[0].health / 5;
+      this.health = upgrades[0].bulletDamage + gun[0].tank.bulletHealth;
+      this.penetration = upgrades[0].penetration + gun[0].tank.bulletPenetration;
+      this.mass = upgrades[0].health / 5 + gun[0].health / 5;
       this.modM = this.health / 5 + this.penetration;
-      this.dyingSpeed = 4;
-      this.size = 17;
+      this.dyingSpeed = gun[0].tank.dyingSpeed;
+      this.size = gun[0].tank.gunSize;
       this.fC = frictionC;
       this.modMass = upgrades[0].health / 5;
     }

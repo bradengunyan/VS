@@ -10,6 +10,7 @@ class DefaultGun {
       this.movementSpeed = upgrades[0].movementSpeed;
       this.mass = upgrades[0].health / 5;
       this.size = 34;
+      this.bulletSize = 17;
     }
     display() {
       stroke(140, 140, 140, gun[0].transparent);
