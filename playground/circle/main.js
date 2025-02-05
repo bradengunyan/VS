@@ -38,8 +38,9 @@ class Particle {
             const dotProduct = this.velocity.dot(normal);
             this.velocity.sub(normal.mult(2 * dotProduct));
             lines.push(new Line(new createVector(this.position.x, this.position.y)));
-            this.size += 1;
+            if (this.acceleration.y > 0) {
             this.acceleration.y -= 0.001;
+            }
         }
     }
 }
@@ -102,4 +103,5 @@ draw = function () {
     pop();
     stroke(255);
     text(lines.length, 50, 50);
+    text(particle.acceleration.y, 100, 100);
 };

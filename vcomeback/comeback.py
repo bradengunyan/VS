@@ -1,7 +1,6 @@
 import pyautogui
 import pytesseract
 import keyboard
-import time
 import sys
 import os
 from PIL import Image
@@ -14,21 +13,30 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
+def preprocess_image(image):
+    """Convert image to grayscale and increase contrast."""
+    image = image.convert("L")  # Convert to grayscale
+    image = image.point(lambda x: 0 if x < 128 else 255)  # Increase contrast
+    return image
+
 def extract_text_from_screen(region):
+    """Capture screenshot, preprocess it, and extract text using Tesseract."""
     screenshot = pyautogui.screenshot(region=region)
-    text = pytesseract.image_to_string(screenshot)
+    processed_image = preprocess_image(screenshot)
+    text = pytesseract.image_to_string(processed_image, config="--psm 6")
     return text.strip()
 
 def generate_comeback(prompt):
+    """Generate a witty AI comeback using OpenAI API."""
     try:
         completion = client.chat.completions.create(
-            model= "gpt-3.5-turbo",
+            model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "You are a witty AI that generates clever comebacks."},
                 {"role": "user", "content": prompt}
             ],
-            max_tokens=20,
-            temperature=0.8
+            max_tokens=50,  # Increase length for better responses
+            temperature=0.9  # More creativity
         )
         return completion.choices[0].message.content.strip()
     except Exception as e:
@@ -36,23 +44,57 @@ def generate_comeback(prompt):
         return "Couldn't generate a comeback."
 
 def run_comeback():
-    region = (400, 100, 1000, 500)  
-    text = extract_text_from_screen(region)
-    
+
+    region = (20, 1030, 70, 50)
+    screenshot = pyautogui.screenshot(region=region)
+    screenshot.save("chat_screenshot.png")  # Save for debugging
+
+    # Process image and extract text
+    image = Image.open("chat_screenshot.png")
+    processed_image = preprocess_image(image)
+    chat = pytesseract.image_to_string(processed_image, config="--psm 6")
+    print(f"THIS IS THE CHAT:::::{chat}")
+
+    region = (20, 860, 400, 250)  # Define the correct region for chat text
+
+    # Capture and save screenshot for debugging
+    screenshot = pyautogui.screenshot(region=region)
+    screenshot.save("debug_screenshot.png")  # Save for debugging
+
+    # Process image and extract text
+    image = Image.open("debug_screenshot.png")
+    processed_image = preprocess_image(image)
+    text = pytesseract.image_to_string(processed_image, config="--psm 6")
+
     if text:
         print(f"Extracted Text: {text}")
-        comeback = generate_comeback(text)
-        print(f"AI-Generated Comeback: {comeback}")
 
-    time.sleep(5)
+        # Generate AI comeback
+        # comeback = generate_comeback(text)
+        # print(f"AI-Generated Comeback: {comeback}")
+
+        # Type the comeback into the chat
+        if chat == 'Team:':
+            keyboard.press('shift')
+            keyboard.press_and_release('enter')  # Open chat (if required)
+            keyboard.release('shift')
+            # keyboard.write(comeback)  # Type the AI response
+            keyboard.press_and_release('enter')  # Send the message
+        else:
+            keyboard.press_and_release('enter')
+            # keyboard.write(comeback)
+    else:
+        print("No text found")
 
 def exit_program():
+    """Exit the script."""
     print("Exiting program...")
     sys.exit()
 
 def main():
-    keyboard.add_hotkey(']', run_comeback)
-    keyboard.add_hotkey('[', exit_program)
+    """Set up keyboard hotkeys and wait for user input."""
+    keyboard.add_hotkey(']', run_comeback)  # Press "]" to trigger comeback
+    keyboard.add_hotkey('[', exit_program)  # Press "[" to exit
     keyboard.wait()
 
 if __name__ == "__main__":
