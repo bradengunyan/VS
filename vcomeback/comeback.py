@@ -92,7 +92,6 @@ def exit_program():
     sys.exit()
 
 def main():
-    """Set up keyboard hotkeys and wait for user input."""
     keyboard.add_hotkey(']', run_comeback)  # Press "]" to trigger comeback
     keyboard.add_hotkey('[', exit_program)  # Press "[" to exit
     keyboard.wait()
