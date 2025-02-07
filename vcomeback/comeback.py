@@ -3,6 +3,7 @@ import pytesseract
 import keyboard
 import sys
 import os
+import time
 from PIL import Image
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -45,7 +46,7 @@ def generate_comeback(prompt):
 
 def run_comeback():
 
-    region = (20, 1030, 70, 50)
+    region = (20, 1000, 70, 50)
     screenshot = pyautogui.screenshot(region=region)
     screenshot.save("chat_screenshot.png")  # Save for debugging
 
@@ -55,7 +56,7 @@ def run_comeback():
     chat = pytesseract.image_to_string(processed_image, config="--psm 6")
     print(f"THIS IS THE CHAT:::::{chat}")
 
-    region = (20, 860, 400, 250)  # Define the correct region for chat text
+    region = (20, 800, 400, 250)  # Define the correct region for chat text
 
     # Capture and save screenshot for debugging
     screenshot = pyautogui.screenshot(region=region)
@@ -70,24 +71,22 @@ def run_comeback():
         print(f"Extracted Text: {text}")
 
         # Generate AI comeback
-        # comeback = generate_comeback(text)
-        # print(f"AI-Generated Comeback: {comeback}")
+        comeback = generate_comeback(text)
+        print(f"AI-Generated Comeback: {comeback}")
 
         # Type the comeback into the chat
-        if chat == 'Team:':
-            keyboard.press('shift')
-            keyboard.press_and_release('enter')  # Open chat (if required)
-            keyboard.release('shift')
-            # keyboard.write(comeback)  # Type the AI response
-            keyboard.press_and_release('enter')  # Send the message
-        else:
-            keyboard.press_and_release('enter')
-            # keyboard.write(comeback)
+        keyboard.press('shift')
+        time.sleep(0.5)
+        keyboard.press_and_release('enter')  # Open chat (if required)
+        time.sleep(0.2)
+        keyboard.release('shift')
+        keyboard.write(comeback, delay=0.05)  # Type the AI response
+        time.sleep(0.5)
+        keyboard.press_and_release('enter')  # Send the message
     else:
         print("No text found")
 
 def exit_program():
-    """Exit the script."""
     print("Exiting program...")
     sys.exit()
 
